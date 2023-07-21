@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <link href="popup.css" rel="stylesheet" type="text/css"/>
+  <style>
+   h1 {
+    font-size: 18px;
+}
+
+button {
+    float: right;
+}
+  </style>
+ </head>
+ <body>
+  <h1 style="white-space: nowrap; font-size: 20px;">
+   MS Rewards Assistant
+  </h1>
+  <label for="count">
+   Search count:
+  </label>
+  <input id="count" min="1" type="number" value="1"/>
+  <p id="remaining">
+   Remaining count: 0
+  </p>
+  <div style="display: flex; justify-content: flex-end;">
+   <button id="start">
+    Start
+   </button>
+   <button id="stop">
+    Stop
+   </button>
+  </div>
+  <script src="popup.js">
+  </script>
+ </body>
+</html>
