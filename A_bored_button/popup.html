@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      fetch('urls.json')
+        .then((response) => response.json())
+        .then((data) => {
+          chrome.storage.local.set({ urls: data });
+        });
+    </script>
+  </head>
+  <body>
+    <h1>A Bored Button</h1>
+    <p>Click the button to open a random website.</p>
+  </body>
+</html>
