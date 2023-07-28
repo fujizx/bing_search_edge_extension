@@ -33,7 +33,7 @@ async function doSearch() {
             type: 'basic',
             iconUrl: 'icon.png',
             title: 'MS Rewards Assistant',
-            message: '搜索完成'
+            message: 'Mission Complete'
         });
     }
 }

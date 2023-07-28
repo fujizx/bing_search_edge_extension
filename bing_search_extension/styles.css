@@ -1,0 +1,7 @@
+#frame .cardContainer {
+    display: block; 
+  }
+  
+  #frame > *:not(.cardContainer) {
+    display: none;
+  }
