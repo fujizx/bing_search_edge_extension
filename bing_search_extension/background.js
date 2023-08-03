@@ -1,5 +1,5 @@
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     self.skipWaiting();
 });
 
@@ -13,29 +13,20 @@ async function loadQueries() {
 }
 
 async function doSearch() {
-    if (count > 0 && queries.length > 0) {
-        const query = queries[Math.floor(Math.random() * queries.length)];
-        const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
-        const tabs = await chrome.tabs.query({active: true, currentWindow: true});
-        if (tabs.length > 0) {
-            chrome.tabs.update(tabs[0].id, {url: url});
-        } else {
-            chrome.tabs.create({url: url});
-        }
-
-        count--;
-        chrome.action.setBadgeText({text: count.toString()});
-        const delay = Math.floor(Math.random() * 5 + 4) * 1000;
-        setTimeout(doSearch, delay);
+    const query = queries[Math.floor(Math.random() * queries.length)];
+    const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tabs.length > 0) {
+        chrome.tabs.update(tabs[0].id, { url: url });
     } else {
-        chrome.action.setBadgeText({text: ''});
-        chrome.notifications.create({
-            type: 'basic',
-            iconUrl: 'icon.png',
-            title: 'MS Rewards Assistant',
-            message: 'Mission Complete'
-        });
+        chrome.tabs.create({ url: url });
     }
+
+    count--;
+    chrome.action.setBadgeText({ text: count.toString() });
+    const delay = Math.floor(Math.random() * 5 + 4) * 1000;
+    setTimeout(doSearch, delay);
+
 }
 
 loadQueries();
@@ -46,6 +37,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         doSearch();
     } else if (request.command === 'stop') {
         count = 0;
-        chrome.action.setBadgeText({text: ''});
+        chrome.action.setBadgeText({ text: '' });
     }
 });

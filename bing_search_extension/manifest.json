@@ -12,17 +12,6 @@
     },
     "permissions": [
         "tabs",
-        "activeTab",
-        "notifications" 
-    ],
-    "content_scripts": [
-        {
-          "matches": ["<all_urls>"],
-          "js": ["content.js"]
-        },
-        {
-            "matches": ["<all_urls>"],
-            "css": ["styles.css"]
-          }
-      ]
+        "activeTab"
+    ]
 }
