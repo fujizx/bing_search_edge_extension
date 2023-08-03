@@ -27,8 +27,6 @@ async function doSearch() {
         chrome.action.setBadgeText({ text: count.toString() });
         const delay = Math.floor(Math.random() * 5 + 4) * 1000;
         setTimeout(doSearch, delay);
-    }else{
-        alert("Mission completed"); 
     }
 }
 
