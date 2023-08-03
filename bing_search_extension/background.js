@@ -13,20 +13,23 @@ async function loadQueries() {
 }
 
 async function doSearch() {
-    const query = queries[Math.floor(Math.random() * queries.length)];
-    const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
-    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (tabs.length > 0) {
-        chrome.tabs.update(tabs[0].id, { url: url });
-    } else {
-        chrome.tabs.create({ url: url });
+    if (count > 0 && queries.length > 0) {
+        const query = queries[Math.floor(Math.random() * queries.length)];
+        const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
+        const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tabs.length > 0) {
+            chrome.tabs.update(tabs[0].id, { url: url });
+        } else {
+            chrome.tabs.create({ url: url });
+        }
+
+        count--;
+        chrome.action.setBadgeText({ text: count.toString() });
+        const delay = Math.floor(Math.random() * 5 + 4) * 1000;
+        setTimeout(doSearch, delay);
+    }else{
+        alert("Mission completed"); 
     }
-
-    count--;
-    chrome.action.setBadgeText({ text: count.toString() });
-    const delay = Math.floor(Math.random() * 5 + 4) * 1000;
-    setTimeout(doSearch, delay);
-
 }
 
 loadQueries();
