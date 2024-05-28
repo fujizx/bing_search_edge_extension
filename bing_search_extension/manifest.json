@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "MS Rewards Assistant",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Automatically search a list of queries on Bing to earn Rewards points",
     "background": {
         "service_worker": "background.js"
