@@ -18,7 +18,12 @@ async function doSearch() {
         const questionWord = queries.question_words[Math.floor(Math.random() * queries.question_words.length)];
         const noun = queries.nouns[Math.floor(Math.random() * queries.nouns.length)];
         const verb = queries.verbs[Math.floor(Math.random() * queries.verbs.length)];
-        const query = `${questionWord} ${noun} ${verb}`;
+        const probabilityOfVerb = 0.7; 
+
+        let query = `${questionWord} ${noun}`;
+        if(Math.random() < probabilityOfVerb){
+            query += ` ${verb}`;
+        }
         const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query)+'&form=QBRE';
         const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
         if (tabs.length > 0) {
@@ -29,7 +34,7 @@ async function doSearch() {
 
         count--;
         chrome.action.setBadgeText({ text: count.toString() });
-        const delay = Math.floor(Math.random() * 5 + 4) * 1000;
+        const delay = Math.floor(Math.random() * 5 + 5) * 1000;
         setTimeout(doSearch, delay);
     }
 }
