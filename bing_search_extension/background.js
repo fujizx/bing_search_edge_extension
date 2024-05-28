@@ -9,17 +9,17 @@ let queries = [];
 async function loadQueries() {
     const response = await fetch('queries_new.json');
     const data = await response.json();
-    queries = data.queries;
+    queries = data;
 }
 
 async function doSearch() {
-    if (count > 0 && queries.length > 0) {
+    if (count > 0) {
         // const query = queries[Math.floor(Math.random() * queries.length)];
         const questionWord = queries.question_words[Math.floor(Math.random() * queries.question_words.length)];
         const noun = queries.nouns[Math.floor(Math.random() * queries.nouns.length)];
         const verb = queries.verbs[Math.floor(Math.random() * queries.verbs.length)];
         const query = `${questionWord} ${noun} ${verb}`;
-        const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
+        const url = 'https://www.bing.com/search?q=' + encodeURIComponent(query)+'&form=QBRE';
         const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
         if (tabs.length > 0) {
             chrome.tabs.update(tabs[0].id, { url: url });
