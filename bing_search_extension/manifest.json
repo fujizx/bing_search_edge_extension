@@ -12,5 +12,15 @@
     },
     "permissions": [
         "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://cn.bing.com/"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
     ]
 }

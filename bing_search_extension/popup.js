@@ -9,7 +9,9 @@ document.getElementById('start').addEventListener('click', () => {
     const count = document.getElementById('count').value;
     chrome.runtime.sendMessage({command: 'start', count: count});
 });
-
 document.getElementById('stop').addEventListener('click', () => {
     chrome.runtime.sendMessage({command: 'stop'});
+});
+document.getElementById('tasks').addEventListener('click', () => {
+    chrome.runtime.sendMessage({command: 'tasks'});
 });
